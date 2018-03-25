@@ -16,6 +16,13 @@ public class SongAdapter extends ArrayAdapter<Song> {
 
     private static final String LOG_TAG = ArrayAdapter.class.getSimpleName();
 
+    /*
+    * public SongAdapter(Context c, ArrayList<Song> theSongs){
+  songs=theSongs;
+  songInf=LayoutInflater.from(c);
+}
+    * */
+
     public SongAdapter(Activity context, ArrayList<Song> qantaPlayer) {
         super(context, 0, qantaPlayer);
     }
@@ -42,4 +49,6 @@ public class SongAdapter extends ArrayAdapter<Song> {
         // Return the whole list item layout
         return listItemView;
     }
+
+
 }
