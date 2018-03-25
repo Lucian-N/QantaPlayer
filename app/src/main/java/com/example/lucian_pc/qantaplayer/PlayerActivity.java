@@ -24,9 +24,9 @@ public class PlayerActivity extends AppCompatActivity {
         setContentView(R.layout.song_list);
 
         // define arraylist, adapter and views
-        ArrayList<Song> songs = new ArrayList<>();
+        songs = new ArrayList<>();
         SongAdapter songsAdapter = new SongAdapter(this, songs);
-        ListView songView = findViewById(R.id.list);
+        songView = findViewById(R.id.list);
         songView.setAdapter(songsAdapter);
 
         getTracks();
@@ -49,17 +49,13 @@ public class PlayerActivity extends AppCompatActivity {
             //get columns
             int nameColumn = songCursor.getColumnIndex
                     (MediaStore.Audio.Media.TITLE);
-            int trackColumn = songCursor.getColumnIndex
-                    (MediaStore.Audio.Media._ID);
             int artistColumn = songCursor.getColumnIndex
                     (MediaStore.Audio.Media.ARTIST);
             //add songs to list
             do {
-                long thisTrack = songCursor.getLong(trackColumn);
                 String thisTitle = songCursor.getString(nameColumn);
                 String thisArtist = songCursor.getString(artistColumn);
-
-                songs.add(new Song(thisTrack, thisTitle, thisArtist));
+                songs.add(new Song(thisTitle, thisArtist));
             }
             while (songCursor.moveToNext());
         }

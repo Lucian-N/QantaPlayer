@@ -7,13 +7,11 @@ package com.example.lucian_pc.qantaplayer;
 public class Song {
 
     // strings used to store song information
-    private long mTrack;
     private String mSongName;
     private String mArtistName;
 
     // Create new Song object
-    public Song(long trackNum ,String songName, String artistName) {
-        mTrack = trackNum;
+    public Song(String songName, String artistName) {
         mSongName = songName;
         mArtistName = artistName;
     }
@@ -25,7 +23,7 @@ public class Song {
     public String getArtistName() {
         return mArtistName;
     }
-    public long getTrackNum() { return mTrack; }
+
 
 
 }
