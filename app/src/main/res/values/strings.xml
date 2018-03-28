@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">QantaPlayer</string>
-    <string name="category_numbers">Open Library</string>
+    <string name="library">Library</string>
+    <string name="favorites">Favorites</string>
+    <string name="options">Options</string>
+    <string name="menu">Main Menu</string>
 </resources>

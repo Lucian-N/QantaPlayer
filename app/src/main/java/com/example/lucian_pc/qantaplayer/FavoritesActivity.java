@@ -1,5 +1,6 @@
 package com.example.lucian_pc.qantaplayer;
 
+
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class PlayerActivity extends AppCompatActivity {
+public class FavoritesActivity extends AppCompatActivity {
 
     private ArrayList<Song> songs;
     private ListView songView;
@@ -33,22 +34,24 @@ public class PlayerActivity extends AppCompatActivity {
 
         getTracks();
 
-        Collections.sort(songs, new Comparator<Song>(){
-            public int compare(Song a, Song b){
+        Collections.sort(songs, new Comparator<Song>() {
+            public int compare(Song a, Song b) {
                 return a.getSongName().compareTo(b.getSongName());
             }
         });
+
         // Return to main menu functionality
         TextView menu = findViewById(R.id.menu);
         menu.setOnClickListener(new View.OnClickListener() {
             // The code in this method will be executed when the numbers View is clicked on.
             @Override
             public void onClick(View view) {
-                Intent favsIntent = new Intent(PlayerActivity.this, MainActivity.class);
+                Intent favsIntent = new Intent(FavoritesActivity.this, MainActivity.class);
                 startActivity(favsIntent);
             }
         });
     }
+
     public void getTracks() {
 
         ContentResolver songResolver = getContentResolver();
@@ -56,7 +59,7 @@ public class PlayerActivity extends AppCompatActivity {
         Cursor songCursor = songResolver.query(songUri, null, null, null, null);
 
         // check for null references
-        if(songCursor!=null && songCursor.moveToFirst()){
+        if (songCursor != null && songCursor.moveToFirst()) {
             //get columns
             int nameColumn = songCursor.getColumnIndex
                     (MediaStore.Audio.Media.TITLE);
@@ -72,5 +75,5 @@ public class PlayerActivity extends AppCompatActivity {
         }
     }
 
-    //TODO Now playing functionality
+    //TODO Favorite songs implementation
 }
