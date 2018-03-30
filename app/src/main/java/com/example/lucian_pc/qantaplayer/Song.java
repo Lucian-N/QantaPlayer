@@ -23,7 +23,4 @@ public class Song {
     public String getArtistName() {
         return mArtistName;
     }
-
-
-
 }

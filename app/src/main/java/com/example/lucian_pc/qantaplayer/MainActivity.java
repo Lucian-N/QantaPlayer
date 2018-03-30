@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //TODO Options
-
-        //TODO Now playing
+        //TODO Now playing functionality
     }
 }

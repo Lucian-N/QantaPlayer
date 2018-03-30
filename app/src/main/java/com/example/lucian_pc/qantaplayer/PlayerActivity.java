@@ -32,7 +32,6 @@ public class PlayerActivity extends AppCompatActivity {
         songView.setAdapter(songsAdapter);
 
         getTracks();
-
         Collections.sort(songs, new Comparator<Song>(){
             public int compare(Song a, Song b){
                 return a.getSongName().compareTo(b.getSongName());
@@ -55,22 +54,18 @@ public class PlayerActivity extends AppCompatActivity {
         Uri songUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         Cursor songCursor = songResolver.query(songUri, null, null, null, null);
 
-        // check for null references
-        if(songCursor!=null && songCursor.moveToFirst()){
-            //get columns
-            int nameColumn = songCursor.getColumnIndex
-                    (MediaStore.Audio.Media.TITLE);
-            int artistColumn = songCursor.getColumnIndex
-                    (MediaStore.Audio.Media.ARTIST);
-            //add songs to list
-            do {
-                String thisTitle = songCursor.getString(nameColumn);
-                String thisArtist = songCursor.getString(artistColumn);
+        // sanity check, loop through media to generate strings for array adapter
+        if (songCursor != null && songCursor.moveToFirst()) {
+
+            int songNameColumn = songCursor.getColumnIndex(MediaStore.Audio.Media.TITLE);
+            int artistNameColumn = songCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
+
+            for (songCursor.moveToFirst(); !songCursor.isAfterLast(); songCursor.moveToNext()) {
+                String thisTitle = songCursor.getString(songNameColumn);
+                String thisArtist = songCursor.getString(artistNameColumn);
                 songs.add(new Song(thisTitle, thisArtist));
             }
-            while (songCursor.moveToNext());
         }
     }
-
     //TODO Now playing functionality
 }
