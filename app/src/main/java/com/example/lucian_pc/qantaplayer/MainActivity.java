@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,31 +18,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ActivityCompat.requestPermissions(MainActivity.this,
-                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},1);
+                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
 
-        // Find the View that shows the numbers category
-        TextView songs = findViewById(R.id.libraries);
-        TextView favorites = findViewById(R.id.favorites);
-
-        // Set a click listener on that View
-        songs.setOnClickListener(new View.OnClickListener() {
-            // The code in this method will be executed when the numbers View is clicked on.
-            @Override
-            public void onClick(View view) {
-                Intent playerIntent = new Intent(MainActivity.this, PlayerActivity.class);
-                startActivity(playerIntent);
-            }
-        });
-        favorites.setOnClickListener(new View.OnClickListener() {
-            // The code in this method will be executed when the numbers View is clicked on.
-            @Override
-            public void onClick(View view) {
-                Intent favsIntent = new Intent(MainActivity.this, PlayerActivity.class);
-                startActivity(favsIntent);
-            }
-        });
+        // Implement button functionality
+        Button songs = findViewById(R.id.libraries);
+        Button favorites = findViewById(R.id.favorites);
+        songs.setOnClickListener(this);
+        favorites.setOnClickListener(this);
 
         //TODO Options
         //TODO Now playing functionality
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.libraries:
+                Intent libraryIntent = new Intent(this, PlayerActivity.class);
+                startActivity(libraryIntent);
+                break;
+            case R.id.favorites:
+                Intent favoriteIntent = new Intent(this, FavoritesActivity.class);
+                startActivity(favoriteIntent);
+                break;
+            default:
+                break;
+        }
     }
 }

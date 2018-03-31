@@ -8,14 +8,18 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class PlayerActivity extends AppCompatActivity {
+/*
+* Icons made by https://www.flaticon.com/authors/naseer-ahmed
+*/
+
+public class PlayerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ArrayList<Song> songs;
     private ListView songView;
@@ -38,15 +42,8 @@ public class PlayerActivity extends AppCompatActivity {
             }
         });
         // Return to main menu functionality
-        TextView menu = findViewById(R.id.menu);
-        menu.setOnClickListener(new View.OnClickListener() {
-            // The code in this method will be executed when the numbers View is clicked on.
-            @Override
-            public void onClick(View view) {
-                Intent favsIntent = new Intent(PlayerActivity.this, MainActivity.class);
-                startActivity(favsIntent);
-            }
-        });
+        Button menu = findViewById(R.id.menu);
+        menu.setOnClickListener(this);
     }
     public void getTracks() {
 
@@ -68,4 +65,16 @@ public class PlayerActivity extends AppCompatActivity {
         }
     }
     //TODO Now playing functionality
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.menu:
+                Intent menuIntent = new Intent(this, MainActivity.class);
+                startActivity(menuIntent);
+                break;
+            default:
+                break;
+        }
+    }
 }

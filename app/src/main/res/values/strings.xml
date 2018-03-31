@@ -4,4 +4,6 @@
     <string name="favorites">Favorites</string>
     <string name="options">Options</string>
     <string name="menu">Main Menu</string>
+    <string name="playing">Now playing</string>
+    <string name="favPlay">Playing Favorites</string>
 </resources>
